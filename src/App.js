@@ -1,12 +1,16 @@
 import { createBrowserRouter, Routes, Route, Link, NavLink, createRoutesFromElements, RouterProvider } from "react-router-dom";
 import RootLayout from "./Layouts/RootLayout";
 import HelpLayout from "./Layouts/HelpLayout";
+
 //pages
 import Home from "./pages/home";
 import About from "./pages/about";
 import Faq from "./pages/faq";
 import Contact from "./pages/contact";
-import NotFound from "./pages/notFound.js"
+import NotFound from "./pages/notFound"
+import CareersLayout from "./Layouts/CareersLayout";
+import Careers, { careersLoader } from "./pages/careers/careers"
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout/>}>
@@ -19,7 +23,10 @@ const router = createBrowserRouter(
       </Route>
 
       <Route path="careers" element={<CareersLayout/>}>
-        <Route index element={<Careers />} />
+        <Route 
+          index 
+          element={<Careers />} 
+          loader={careersLoader}/>
       </Route>
   
       {/* error page "*"= if no other path */}
