@@ -9,7 +9,7 @@ export default function Careers() {
 
         {careersData.map(({ id, title, location }) => (
 
-          <Link to="/" key={id}>
+          <Link to={id.toString()} key={id}>
             <p>{title}</p>
             <p>Based in {location}</p>
           </Link>
@@ -23,5 +23,9 @@ export default function Careers() {
 //loader function
 export const careersLoader = async () => {
   const res= await fetch('http://localhost:4000/careers')
+  
+  if (!res.ok) {
+    throw Error('Could not fetch the list of careers')
+  }
   return res.json()
 }
